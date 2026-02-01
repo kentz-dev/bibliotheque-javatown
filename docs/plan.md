@@ -10,7 +10,7 @@ exigences définies.
 ## 2. Structure en couches (Architecture)
 L'application sera structurée selon une architecture hexagonale/en couches pour assurer la maintenabilité et la testabilité :
 
-- **Couche Domaine (Domain)** : Contient les entités métier (Client, Document, Livre, CD, DVD, Emprunt). C'est le cœur de la logique métier, indépendant des frameworks.
+- **Couche Domaine (Domain)** : Contient les entités métier (Utilisateur, Client, Prepose, Document, Livre, CD, DVD, Emprunt). C'est le cœur de la logique métier, indépendant des frameworks.
 - **Couche Persistance (Persistence)** : Gère l'accès aux données via Spring Data JPA. Utilisation d'une base de données H2 en mémoire pour le développement.
 - **Couche Service (Service)** : Implémente la logique de coordination (ex: calcul de la date de retour, validation de la disponibilité d'un exemplaire, inscription client).
 - **Couche API (Web/REST)** : Expose les services via des contrôleurs REST. Utilisation de DTOs (Data Transfer Objects) pour isoler le modèle de données de l'interface publique.
@@ -59,6 +59,17 @@ Assurance qualité et déploiement.
 - Tests d'intégration entre le frontend et le backend.
 - Validation de tous les critères d'acceptation du `requirements.md`.
 
+### Phase 7 : Refactorisation du Modèle Utilisateur et Rôles
+Mise en place d'une structure hiérarchique pour les utilisateurs.
+- **Backend** : Création de la classe abstraite `Utilisateur` et des sous-classes `Client` et `Prepose`.
+- **API** : Endpoints dédiés à la gestion des préposés.
+- **Logique** : Attribution du rôle de création de documents aux préposés.
+
+### Phase 10 : Améliorations Fonctionnelles et UX Avancée
+Optimisation du système pour une meilleure flexibilité.
+- **Backend** : Normalisation des emails (case-insensitive) et moteur d'emprunt groupé (batch).
+- **Frontend** : Système de panier d'emprunt dans le catalogue et gestion des retours individuels.
+
 ## 4. Ordre logique de réalisation
 L'ordre suit une progression naturelle des données :
 1. **Modèle de données & Persistance** (Backend) : Créer les tables et entités.
@@ -68,7 +79,7 @@ L'ordre suit une progression naturelle des données :
 5. **Intégration** : Relier l'interface aux API.
 
 ## 5. Dépendances techniques
-- **Backend** : Java 17, Spring Boot (Web, Data JPA), H2 Database, Lombok, Maven.
+- **Backend** : Java 23, Spring Boot (Web, Data JPA), H2 Database, Lombok, Maven.
 - **Frontend** : Node.js, React, React Router, Axios, Tailwind CSS (optionnel pour le style).
 - **Outils** : Git, JUnit 5 pour les tests.
 
